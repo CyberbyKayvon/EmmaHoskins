@@ -7,297 +7,243 @@
   <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: 'Nunito', sans-serif;
-      background: #fdf0fa;
-      color: #2d1a2e;
-    }
+    body { font-family: 'Nunito', sans-serif; background: #fdf0fa; color: #2d1a2e; }
 
     /* NAV */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      background: rgba(255,255,255,0.92);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: rgba(255,255,255,0.93);
       backdrop-filter: blur(10px);
       padding: 0.9rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      display: flex; align-items: center; justify-content: space-between;
       box-shadow: 0 2px 16px rgba(200,100,200,0.1);
     }
-    .nav-logo {
-      font-family: 'Fredoka One', cursive;
-      font-size: 1.2rem;
-      color: #c040b0;
-    }
-    .nav-links { display: flex; gap: 0.8rem; }
+    .nav-logo { font-family: 'Fredoka One', cursive; font-size: 1.2rem; color: #c040b0; }
+    .nav-links { display: flex; gap: 0.7rem; }
     .nav-links a {
-      font-family: 'Fredoka One', cursive;
-      font-size: 0.88rem;
-      color: #c040b0;
-      text-decoration: none;
-      background: #ffe0f5;
-      padding: 5px 16px;
-      border-radius: 999px;
+      font-family: 'Fredoka One', cursive; font-size: 0.85rem;
+      color: #c040b0; text-decoration: none;
+      background: #ffe0f5; padding: 5px 14px; border-radius: 999px;
       transition: background 0.15s;
     }
     .nav-links a:hover { background: #ffb8e8; }
 
-    /* HERO — full viewport, photo fills background */
+    /* HERO */
     .hero {
-      position: relative;
-      height: 100vh;
-      min-height: 600px;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      overflow: hidden;
+      position: relative; height: 100vh; min-height: 600px;
+      display: flex; align-items: flex-end; justify-content: center; overflow: hidden;
     }
     .hero-bg {
-      position: absolute;
-      inset: 0;
-      background-image: url('images/IMG_8515.jpg');
-      background-size: cover;
-      background-position: center top;
-      filter: brightness(0.82);
+      position: absolute; inset: 0;
+      background-image: url('images/photo11.JPG');
+      background-size: cover; background-position: center top;
+      filter: brightness(0.8);
     }
     .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(180,60,180,0.08) 0%,
-        rgba(80,0,80,0.0) 40%,
-        rgba(40,0,60,0.72) 100%
-      );
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(180,60,180,0.08) 0%, transparent 40%, rgba(40,0,60,0.75) 100%);
     }
     .hero-content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      padding: 2.5rem 2rem 3.5rem;
-      width: 100%;
-      max-width: 700px;
+      position: relative; z-index: 2;
+      text-align: center; padding: 2.5rem 2rem 3.5rem;
+      width: 100%; max-width: 700px;
     }
     .hero-name {
       font-family: 'Fredoka One', cursive;
       font-size: clamp(3rem, 8vw, 5.5rem);
-      color: white;
-      line-height: 1;
-      text-shadow: 0 4px 24px rgba(0,0,0,0.4);
-      margin-bottom: 0.4rem;
+      color: white; line-height: 1;
+      text-shadow: 0 4px 24px rgba(0,0,0,0.4); margin-bottom: 0.4rem;
     }
-    .hero-sub {
-      font-size: 1.1rem;
-      color: rgba(255,255,255,0.88);
-      font-weight: 700;
-      margin-bottom: 0.3rem;
-      letter-spacing: 0.02em;
-    }
-    .hero-badges {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 1.2rem;
-    }
-    .hero-badge {
-      font-family: 'Fredoka One', cursive;
-      font-size: 0.9rem;
-      padding: 6px 18px;
-      border-radius: 999px;
-      letter-spacing: 0.02em;
-    }
+    .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.88); font-weight: 700; margin-bottom: 0.25rem; }
+    .hero-badges { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 1.2rem; }
+    .hero-badge { font-family: 'Fredoka One', cursive; font-size: 0.88rem; padding: 6px 18px; border-radius: 999px; }
     .badge-yellow { background: #ffe066; color: #7a4f00; }
-    .badge-pink   { background: rgba(255,133,200,0.9); color: white; }
-    .badge-purple { background: rgba(180,100,255,0.9); color: white; }
-
+    .badge-pink   { background: rgba(255,133,200,0.92); color: white; }
+    .badge-purple { background: rgba(180,100,255,0.92); color: white; }
     .scroll-hint {
-      position: absolute;
-      bottom: 1.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 2;
-      color: rgba(255,255,255,0.7);
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+      z-index: 2; color: rgba(255,255,255,0.7); font-size: 0.78rem;
+      font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
       animation: bounce 2s infinite;
     }
     @keyframes bounce {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(6px); }
+      0%,100% { transform: translateX(-50%) translateY(0); }
+      50%      { transform: translateX(-50%) translateY(7px); }
     }
 
     /* STAT STRIP */
     .stat-strip {
       background: linear-gradient(135deg, #c97aff, #ff85c8);
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      text-align: center;
+      display: grid; grid-template-columns: repeat(4, 1fr); text-align: center;
     }
-    .strip-item {
-      padding: 1.4rem 0.5rem;
-      border-right: 1px solid rgba(255,255,255,0.2);
-    }
+    .strip-item { padding: 1.4rem 0.5rem; border-right: 1px solid rgba(255,255,255,0.2); }
     .strip-item:last-child { border-right: none; }
-    .strip-num {
-      font-family: 'Fredoka One', cursive;
-      font-size: 2rem;
-      color: white;
-      line-height: 1;
-    }
-    .strip-label {
-      font-size: 0.72rem;
-      color: rgba(255,255,255,0.85);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-top: 3px;
-    }
+    .strip-num { font-family: 'Fredoka One', cursive; font-size: 2rem; color: white; line-height: 1; }
+    .strip-label { font-size: 0.7rem; color: rgba(255,255,255,0.85); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 3px; }
 
     /* SECTIONS */
-    .section {
-      padding: 3rem 2rem;
-      max-width: 920px;
-      margin: 0 auto;
+    .section { padding: 3rem 2rem; max-width: 960px; margin: 0 auto; }
+    .section-title { font-family: 'Fredoka One', cursive; font-size: 1.8rem; color: #c040b0; margin-bottom: 1.4rem; text-align: center; }
+
+    /* SCOUTING REPORT */
+    .scout-wrap {
+      background: linear-gradient(135deg, #1a0a2e, #2d0a3e);
+      border-radius: 24px; padding: 2rem; color: white;
     }
-    .section-title {
-      font-family: 'Fredoka One', cursive;
-      font-size: 1.8rem;
-      color: #c040b0;
-      margin-bottom: 1.4rem;
-      text-align: center;
+    .scout-title {
+      font-family: 'Fredoka One', cursive; font-size: 1.5rem;
+      color: #ff85c8; text-align: center; margin-bottom: 0.3rem;
+    }
+    .scout-sub { text-align: center; font-size: 0.82rem; color: rgba(255,255,255,0.5); margin-bottom: 1.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+    .scout-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 1.6rem; }
+    .scout-stat { background: rgba(255,255,255,0.06); border-radius: 14px; padding: 1rem 1.1rem; border: 1px solid rgba(255,133,200,0.2); }
+    .scout-stat-label { font-size: 0.72rem; color: rgba(255,255,255,0.5); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+    .scout-bar-track { background: rgba(255,255,255,0.1); border-radius: 999px; height: 8px; overflow: hidden; margin-bottom: 5px; }
+    .scout-bar-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, #c97aff, #ff85c8); transition: width 1.2s cubic-bezier(.4,0,.2,1); }
+    .scout-bar-val { font-family: 'Fredoka One', cursive; font-size: 1.1rem; color: #ff85c8; }
+    .scout-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+    .scout-tag {
+      font-size: 0.78rem; font-weight: 700; padding: 5px 14px; border-radius: 999px;
+      border: 1px solid rgba(255,133,200,0.35); color: rgba(255,255,255,0.85);
+      background: rgba(255,133,200,0.1);
     }
 
-    /* ABOUT */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
+    /* HIGHLIGHT / SHARE CARD */
+    .highlight-section { background: linear-gradient(120deg, #f0e0ff, #ffe0f5); padding: 3rem 2rem; }
+    .highlight-inner { max-width: 960px; margin: 0 auto; }
+    .share-card {
+      background: linear-gradient(135deg, #c97aff 0%, #ff85c8 100%);
+      border-radius: 24px; padding: 2.5rem 2rem;
+      text-align: center; position: relative; overflow: hidden;
+      max-width: 560px; margin: 0 auto;
     }
-    .about-card {
-      background: white;
-      border-radius: 20px;
-      padding: 1.3rem 1.2rem;
-      border: 2px solid #f9c6ef;
-      box-shadow: 0 4px 18px rgba(200,100,200,0.1);
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
+    .share-card-bubble {
+      position: absolute; border-radius: 50%; background: rgba(255,255,255,0.12);
     }
-    .about-icon { font-size: 1.6rem; flex-shrink: 0; }
-    .about-text { font-size: 0.92rem; font-weight: 600; color: #3d1a4a; line-height: 1.45; }
+    .share-card h2 {
+      font-family: 'Fredoka One', cursive; font-size: 1rem;
+      color: rgba(255,255,255,0.8); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.8rem;
+    }
+    .share-name { font-family: 'Fredoka One', cursive; font-size: 2.6rem; color: white; line-height: 1; margin-bottom: 0.3rem; }
+    .share-record { font-family: 'Fredoka One', cursive; font-size: 4rem; color: #ffe066; line-height: 1; margin: 0.5rem 0; }
+    .share-label { font-size: 0.85rem; color: rgba(255,255,255,0.85); font-weight: 700; margin-bottom: 1.2rem; }
+    .share-badges { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .share-badge { background: rgba(255,255,255,0.22); color: white; font-weight: 700; font-size: 0.8rem; padding: 4px 14px; border-radius: 999px; }
+    .share-footer { font-size: 0.75rem; color: rgba(255,255,255,0.6); font-weight: 600; }
+    .share-btn {
+      display: inline-block; margin-top: 1.4rem;
+      background: white; color: #c040b0;
+      font-family: 'Fredoka One', cursive; font-size: 1rem;
+      padding: 10px 28px; border-radius: 999px; border: none; cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15); transition: transform 0.15s;
+    }
+    .share-btn:hover { transform: scale(1.04); }
+    .share-copied { display: none; font-size: 0.8rem; color: white; margin-top: 8px; font-weight: 700; }
 
     /* GALLERY */
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: auto auto;
       gap: 12px;
     }
-    .gallery-grid .big {
-      grid-column: span 2;
-      grid-row: span 2;
-    }
-    .gallery-img {
-      width: 100%;
-      height: 100%;
-      min-height: 200px;
-      object-fit: cover;
-      border-radius: 18px;
+    .g-item { overflow: hidden; border-radius: 18px; cursor: pointer; position: relative; }
+    .g-item img {
+      width: 100%; height: 220px; object-fit: cover; display: block;
       border: 3px solid #f9c6ef;
+      border-radius: 18px;
+      transition: transform 0.25s, box-shadow 0.25s;
       box-shadow: 0 4px 14px rgba(200,100,200,0.14);
-      transition: transform 0.2s, box-shadow 0.2s;
-      display: block;
     }
-    .gallery-img:hover {
-      transform: scale(1.02);
-      box-shadow: 0 8px 24px rgba(200,100,200,0.25);
+    .g-item:hover img { transform: scale(1.04); box-shadow: 0 8px 24px rgba(200,100,200,0.28); }
+    .g-item.featured img { height: 460px; }
+    .g-label {
+      position: absolute; bottom: 10px; left: 10px;
+      background: rgba(192,64,176,0.85); color: white;
+      font-family: 'Fredoka One', cursive; font-size: 0.75rem;
+      padding: 3px 10px; border-radius: 999px;
     }
+
+    /* LIGHTBOX */
+    .lightbox {
+      display: none; position: fixed; inset: 0; z-index: 999;
+      background: rgba(20,0,30,0.92); align-items: center; justify-content: center;
+    }
+    .lightbox.active { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 88vh; border-radius: 16px; object-fit: contain; }
+    .lb-close {
+      position: absolute; top: 1.2rem; right: 1.5rem;
+      font-family: 'Fredoka One', cursive; font-size: 2rem;
+      color: white; cursor: pointer; line-height: 1;
+    }
+    .lb-prev, .lb-next {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,0.15); color: white; border: none;
+      font-size: 1.8rem; padding: 0.6rem 1rem; border-radius: 12px;
+      cursor: pointer; font-family: 'Fredoka One', cursive;
+    }
+    .lb-prev { left: 1rem; }
+    .lb-next { right: 1rem; }
 
     /* RESULTS */
     .results-list { display: flex; flex-direction: column; gap: 12px; }
     .result-card {
-      background: white;
-      border-radius: 16px;
-      padding: 1rem 1.3rem;
-      border-left: 5px solid #ccc;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      background: white; border-radius: 16px; padding: 1rem 1.3rem;
+      border-left: 5px solid #ccc; box-shadow: 0 2px 10px rgba(0,0,0,0.06);
     }
     .result-card.win  { border-left-color: #4caf50; }
     .result-card.loss { border-left-color: #e91e8c; }
-    .result-meta {
-      font-size: 0.76rem; color: #9a6ea0;
-      font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.04em; margin-bottom: 6px;
-    }
-    .result-matchup {
-      display: flex; align-items: center;
-      gap: 12px; flex-wrap: wrap; margin-bottom: 6px;
-    }
-    .player-name {
-      font-family: 'Fredoka One', cursive;
-      font-size: 1.05rem; color: #c040b0;
-    }
-    .score {
-      font-weight: 700; font-size: 0.95rem; color: #3d1a4a;
-      background: #f0e0ff; padding: 2px 10px; border-radius: 999px;
-    }
-    .opponent { font-size: 0.88rem; color: #777; font-weight: 600; }
-    .win-badge  { font-size: 0.75rem; font-weight: 800; color: #2e7d32; }
-    .loss-badge { font-size: 0.75rem; font-weight: 800; color: #ad1457; }
+    .result-meta { font-size: 0.74rem; color: #9a6ea0; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px; }
+    .result-matchup { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 5px; }
+    .player-name { font-family: 'Fredoka One', cursive; font-size: 1.05rem; color: #c040b0; }
+    .score { font-weight: 700; font-size: 0.92rem; color: #3d1a4a; background: #f0e0ff; padding: 2px 10px; border-radius: 999px; }
+    .opponent { font-size: 0.86rem; color: #777; font-weight: 600; }
+    .win-badge  { font-size: 0.74rem; font-weight: 800; color: #2e7d32; }
+    .loss-badge { font-size: 0.74rem; font-weight: 800; color: #ad1457; }
 
-    /* UPCOMING */
-    .fun-bg {
-      background: linear-gradient(120deg, #f0e0ff 0%, #ffe0f5 100%);
-      padding: 3rem 2rem;
-    }
+    /* COUNTDOWN */
+    .countdown-wrap { text-align: center; margin-top: 1.4rem; }
+    .countdown-title { font-family: 'Fredoka One', cursive; font-size: 1.1rem; color: #c040b0; margin-bottom: 0.8rem; }
+    .countdown-boxes { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .cd-box { background: white; border-radius: 16px; padding: 1rem 1.2rem; text-align: center; border: 2px solid #f9c6ef; min-width: 70px; box-shadow: 0 4px 14px rgba(200,100,200,0.1); }
+    .cd-num { font-family: 'Fredoka One', cursive; font-size: 2rem; color: #c040b0; line-height: 1; }
+    .cd-label { font-size: 0.7rem; color: #9a6ea0; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 2px; }
+
+    /* UPCOMING EVENT */
     .event-card {
-      background: white;
-      border-radius: 20px;
-      padding: 1.6rem 1.8rem;
-      box-shadow: 0 4px 18px rgba(200,100,200,0.12);
-      border: 2px solid #f9c6ef;
-      max-width: 480px;
-      margin: 0 auto;
+      background: white; border-radius: 20px; padding: 1.6rem 1.8rem;
+      box-shadow: 0 4px 18px rgba(200,100,200,0.12); border: 2px solid #f9c6ef;
+      max-width: 480px; margin: 0 auto;
     }
-    .event-date {
-      font-family: 'Fredoka One', cursive;
-      font-size: 1rem; color: #c040b0; margin-bottom: 4px;
-    }
-    .event-name {
-      font-family: 'Fredoka One', cursive;
-      font-size: 1.4rem; color: #3d1a4a; margin-bottom: 8px;
-    }
+    .event-date { font-family: 'Fredoka One', cursive; font-size: 1rem; color: #c040b0; margin-bottom: 4px; }
+    .event-name { font-family: 'Fredoka One', cursive; font-size: 1.4rem; color: #3d1a4a; margin-bottom: 8px; }
     .event-location { font-size: 0.88rem; font-weight: 700; color: #7a4090; margin-bottom: 4px; }
     .event-detail   { font-size: 0.82rem; color: #9a6ea0; font-weight: 600; }
 
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .about-card {
+      background: white; border-radius: 20px; padding: 1.2rem;
+      border: 2px solid #f9c6ef; box-shadow: 0 4px 18px rgba(200,100,200,0.1);
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .about-icon { font-size: 1.5rem; flex-shrink: 0; }
+    .about-text { font-size: 0.9rem; font-weight: 600; color: #3d1a4a; line-height: 1.45; }
+
     /* FOOTER */
-    footer {
-      background: linear-gradient(135deg, #c97aff, #ff85c8);
-      padding: 2.5rem 2rem;
-      text-align: center;
-      color: white;
-    }
-    .footer-name {
-      font-family: 'Fredoka One', cursive;
-      font-size: 1.6rem; margin-bottom: 0.4rem;
-    }
-    footer p { font-size: 0.9rem; font-weight: 600; opacity: 0.9; margin: 0.2rem 0; }
+    footer { background: linear-gradient(135deg, #c97aff, #ff85c8); padding: 2.5rem 2rem; text-align: center; color: white; }
+    .footer-name { font-family: 'Fredoka One', cursive; font-size: 1.6rem; margin-bottom: 0.4rem; }
+    footer p { font-size: 0.88rem; font-weight: 600; opacity: 0.9; margin: 0.2rem 0; }
     .footer-small { font-size: 0.76rem !important; opacity: 0.7 !important; margin-top: 10px !important; }
 
     /* MOBILE */
     @media (max-width: 640px) {
-      .stat-strip { grid-template-columns: repeat(2, 1fr); }
+      .stat-strip { grid-template-columns: repeat(2,1fr); }
       .strip-item:nth-child(2) { border-right: none; }
       .about-grid { grid-template-columns: 1fr; }
+      .scout-grid { grid-template-columns: 1fr; }
       .gallery-grid { grid-template-columns: 1fr 1fr; }
-      .gallery-grid .big { grid-column: span 2; grid-row: span 1; }
-      .nav-links a { padding: 4px 10px; font-size: 0.8rem; }
+      .g-item.featured img { height: 280px; }
+      .nav-links a { padding: 4px 10px; font-size: 0.78rem; }
     }
   </style>
 </head>
@@ -308,13 +254,14 @@
     <span class="nav-logo">🎾 Emma Hoskins</span>
     <div class="nav-links">
       <a href="#about">About</a>
+      <a href="#scout">Scouting</a>
       <a href="#gallery">Gallery</a>
       <a href="#results">Results</a>
       <a href="#next">Up Next</a>
     </div>
   </nav>
 
-  <!-- HERO — full screen photo splash -->
+  <!-- HERO -->
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
@@ -325,7 +272,7 @@
       <div class="hero-badges">
         <span class="hero-badge badge-yellow">⭐ 41–17 Overall Record</span>
         <span class="hero-badge badge-pink">Girls 12 & Under</span>
-        <span class="hero-badge badge-purple">UTR 5.xx Singles</span>
+        <span class="hero-badge badge-purple">#46 National Ranking</span>
       </div>
     </div>
     <div class="scroll-hint">↓ &nbsp; scroll</div>
@@ -347,60 +294,134 @@
     </div>
     <div class="strip-item">
       <div class="strip-num">#46</div>
-      <div class="strip-label">CA Recruiting List</div>
+      <div class="strip-label">Class of 2033</div>
     </div>
   </div>
 
   <!-- ABOUT -->
   <section class="section" id="about">
-    <h2 class="section-title">What Makes Emma Dangerous 🔥</h2>
+    <h2 class="section-title">On & Off the Court 🎾✨</h2>
     <div class="about-grid">
       <div class="about-card">
         <span class="about-icon">🎯</span>
-        <span class="about-text">UTR 5.xx singles rating competing Girls 12 & Under — elite for her age</span>
+        <span class="about-text">UTR 5.xx singles — competing Girls 12 & Under and holding her own against older competition</span>
+      </div>
+      <div class="about-card">
+        <span class="about-icon">📍</span>
+        <span class="about-text">Born in Salt Lake City, UT — repping El Dorado Hills, CA and Broadstone Sports Club</span>
       </div>
       <div class="about-card">
         <span class="about-icon">🧠</span>
-        <span class="about-text">Smart, disciplined point construction way beyond her years</span>
-      </div>
-      <div class="about-card">
-        <span class="about-icon">💜</span>
-        <span class="about-text">Trains at Broadstone Sports Club, Folsom CA — putting in the work daily</span>
+        <span class="about-text">Smart, patient point construction — plays way older than 11</span>
       </div>
       <div class="about-card">
         <span class="about-icon">🌱</span>
-        <span class="about-text">Class of 2033 — the recruiting world hasn't seen anything yet</span>
+        <span class="about-text">Class of 2033 — the recruiting world is about to find out</span>
       </div>
       <div class="about-card">
-        <span class="about-icon">🏅</span>
-        <span class="about-text">"Little Mo" West Regionals — Berkeley, CA — July 2026</span>
+        <span class="about-icon">💜</span>
+        <span class="about-text">18 tournaments played this season — putting in the reps consistently</span>
       </div>
       <div class="about-card">
         <span class="about-icon">⚡</span>
-        <span class="about-text">Competes hard every single point — the fight is always there</span>
+        <span class="about-text">Moved up from #49 to #46 nationally — trending in the right direction</span>
       </div>
     </div>
   </section>
 
+  <!-- SCOUTING REPORT -->
+  <section class="section" id="scout">
+    <h2 class="section-title">Scouting Report 📋</h2>
+    <div class="scout-wrap">
+      <p class="scout-title">Emma Hoskins — Player Profile</p>
+      <p class="scout-sub">Girls 12 & Under · Class of 2033 · CA</p>
+      <div class="scout-grid">
+        <div class="scout-stat">
+          <div class="scout-stat-label">Baseline Game</div>
+          <div class="scout-bar-track"><div class="scout-bar-fill" style="width:0%" data-width="88%"></div></div>
+          <div class="scout-bar-val">88</div>
+        </div>
+        <div class="scout-stat">
+          <div class="scout-stat-label">Court Speed</div>
+          <div class="scout-bar-track"><div class="scout-bar-fill" style="width:0%" data-width="82%"></div></div>
+          <div class="scout-bar-val">82</div>
+        </div>
+        <div class="scout-stat">
+          <div class="scout-stat-label">Mental Toughness</div>
+          <div class="scout-bar-track"><div class="scout-bar-fill" style="width:0%" data-width="90%"></div></div>
+          <div class="scout-bar-val">90</div>
+        </div>
+        <div class="scout-stat">
+          <div class="scout-stat-label">Serve</div>
+          <div class="scout-bar-track"><div class="scout-bar-fill" style="width:0%" data-width="75%"></div></div>
+          <div class="scout-bar-val">75</div>
+        </div>
+        <div class="scout-stat">
+          <div class="scout-stat-label">Point Construction</div>
+          <div class="scout-bar-track"><div class="scout-bar-fill" style="width:0%" data-width="85%"></div></div>
+          <div class="scout-bar-val">85</div>
+        </div>
+        <div class="scout-stat">
+          <div class="scout-stat-label">Tournament Experience</div>
+          <div class="scout-bar-track"><div class="scout-bar-fill" style="width:0%" data-width="80%"></div></div>
+          <div class="scout-bar-val">80</div>
+        </div>
+      </div>
+      <div class="scout-tags">
+        <span class="scout-tag">🎯 Baseline Grinder</span>
+        <span class="scout-tag">🧠 IQ Player</span>
+        <span class="scout-tag">💪 High Compete Level</span>
+        <span class="scout-tag">📈 Trending Up</span>
+        <span class="scout-tag">🌟 Top 50 National</span>
+        <span class="scout-tag">🎾 18 Tournaments</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHAREABLE HIGHLIGHT -->
+  <div class="highlight-section">
+    <div class="highlight-inner">
+      <h2 class="section-title">On & Off the Court 📲</h2>
+      <div class="share-card" id="shareCard">
+        <div class="share-card-bubble" style="width:140px;height:140px;top:-50px;left:-40px;"></div>
+        <div class="share-card-bubble" style="width:90px;height:90px;bottom:-20px;right:-20px;"></div>
+        <h2>🎾 Rising Star</h2>
+        <div class="share-name">Emma Hoskins</div>
+        <div class="share-record">41–17</div>
+        <div class="share-label">Overall Career Record</div>
+        <div class="share-badges">
+          <span class="share-badge">#46 National</span>
+          <span class="share-badge">UTR 5.xx</span>
+          <span class="share-badge">Class of 2033</span>
+          <span class="share-badge">El Dorado Hills, CA</span>
+        </div>
+        <div class="share-footer">Girls 12 & Under · Broadstone Sports Club · cyberbykayvon.github.io/EmmaHoskins</div>
+      </div>
+      <div style="text-align:center;">
+        <button class="share-btn" onclick="copyShareLink()">📋 Copy Profile Link</button>
+        <div class="share-copied" id="copiedMsg">✅ Link copied! Share it anywhere 🎾</div>
+      </div>
+    </div>
+  </div>
+
   <!-- GALLERY -->
   <section class="section" id="gallery">
     <h2 class="section-title">On the Court 📸</h2>
-    <div class="gallery-grid">
-      <img src="images/IMG_8515.jpg"  alt="Emma Hoskins tennis" class="gallery-img big" />
-      <img src="images/IMG_0027.jpg"  alt="Emma on court" class="gallery-img" />
-      <img src="images/IMG_3278.jpg"  alt="Emma serving" class="gallery-img" />
-      <img src="images/IMG_3929.jpg"  alt="Emma competing" class="gallery-img" />
-      <img src="images/IMG_6283.jpg"  alt="Emma training" class="gallery-img" />
-      <img src="images/IMG_6847.JPEG" alt="Emma at tournament" class="gallery-img" />
-      <img src="images/IMG_6848.JPG"  alt="Emma with trophy" class="gallery-img" />
-    </div>
+    <div class="gallery-grid" id="galleryGrid"></div>
   </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <span class="lb-close" onclick="closeLB()">✕</span>
+    <button class="lb-prev" onclick="changePhoto(-1)">‹</button>
+    <img id="lbImg" src="" alt="Emma" />
+    <button class="lb-next" onclick="changePhoto(1)">›</button>
+  </div>
 
   <!-- RESULTS -->
   <section class="section" id="results">
     <h2 class="section-title">Recent Results 📋</h2>
     <div class="results-list">
-
       <div class="result-card win">
         <div class="result-meta">Jun 6, 2026 · L3 MTA Manteca · Singles · Round of 32</div>
         <div class="result-matchup">
@@ -410,7 +431,6 @@
         </div>
         <div class="win-badge">WIN ✅</div>
       </div>
-
       <div class="result-card loss">
         <div class="result-meta">Jun 6, 2026 · L3 MTA Manteca · Singles · Round of 16</div>
         <div class="result-matchup">
@@ -420,7 +440,6 @@
         </div>
         <div class="loss-badge">LOSS</div>
       </div>
-
       <div class="result-card loss">
         <div class="result-meta">Jun 6, 2026 · L3 MTA Manteca · Doubles · Round of 16</div>
         <div class="result-matchup">
@@ -430,19 +449,27 @@
         </div>
         <div class="loss-badge">LOSS</div>
       </div>
-
     </div>
   </section>
 
-  <!-- UPCOMING -->
-  <div class="fun-bg" id="next">
-    <div style="max-width:920px;margin:0 auto;">
+  <!-- UPCOMING + COUNTDOWN -->
+  <div style="background:linear-gradient(120deg,#f0e0ff,#ffe0f5);padding:3rem 2rem;" id="next">
+    <div style="max-width:960px;margin:0 auto;">
       <h2 class="section-title">Up Next 📅</h2>
       <div class="event-card">
         <div class="event-date">Jul 18, 2026 · 7:00pm</div>
         <div class="event-name">"Little Mo" West Regionals</div>
         <div class="event-location">📍 Berkeley, CA · Maureen Connolly Brinker Foundation</div>
         <div class="event-detail">Singles · Co-ed · UTR 1.0–16.0 · 264 Players</div>
+      </div>
+      <div class="countdown-wrap">
+        <p class="countdown-title">Countdown to Berkeley 🎾</p>
+        <div class="countdown-boxes">
+          <div class="cd-box"><div class="cd-num" id="cd-days">--</div><div class="cd-label">Days</div></div>
+          <div class="cd-box"><div class="cd-num" id="cd-hours">--</div><div class="cd-label">Hours</div></div>
+          <div class="cd-box"><div class="cd-num" id="cd-mins">--</div><div class="cd-label">Mins</div></div>
+          <div class="cd-box"><div class="cd-num" id="cd-secs">--</div><div class="cd-label">Secs</div></div>
+        </div>
       </div>
     </div>
   </div>
@@ -455,27 +482,114 @@
   </footer>
 
   <script>
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        const t = document.querySelector(link.getAttribute('href'));
-        if (t) t.scrollIntoView({ behavior: 'smooth' });
+    // AUTO GALLERY — tries photo1 through photo30, shows whatever exists
+    // Coach photos (photo2, photo9) get featured slots
+    const coachPhotos = ['photo2.jpg', 'photo9.jpg'];
+    const extensions = ['jpg','JPG','jpeg','JPEG','png','PNG'];
+    const total = 20;
+    const grid = document.getElementById('galleryGrid');
+    const loaded = [];
+
+    function tryLoad(num) {
+      return new Promise(resolve => {
+        const name = 'photo' + num;
+        // try common extensions
+        const exts = ['jpg','JPG','jpeg','JPEG','PNG','png'];
+        let tried = 0;
+        function next(i) {
+          if (i >= exts.length) { resolve(null); return; }
+          const img = new Image();
+          const src = 'images/' + name + '.' + exts[i];
+          img.onload  = () => resolve(src);
+          img.onerror = () => next(i + 1);
+          img.src = src;
+        }
+        next(0);
       });
-    });
-    const obs = new IntersectionObserver(entries => {
+    }
+
+    async function buildGallery() {
+      for (let i = 1; i <= 30; i++) {
+        const src = await tryLoad(i);
+        if (!src) continue;
+        loaded.push(src);
+        const item = document.createElement('div');
+        item.className = 'g-item';
+        // photo2 and photo9 are coach photos — span 2 cols
+        if (i === 2 || i === 9) item.classList.add('featured');
+        item.innerHTML = `<img src="${src}" alt="Emma photo ${i}" loading="lazy" />`;
+        if (i === 2 || i === 9) {
+          const lbl = document.createElement('div');
+          lbl.className = 'g-label';
+          lbl.textContent = '📸 Coach Kayvon';
+          item.appendChild(lbl);
+        }
+        item.addEventListener('click', () => openLB(loaded.length - 1));
+        grid.appendChild(item);
+      }
+    }
+    buildGallery();
+
+    // LIGHTBOX
+    let lbIndex = 0;
+    function openLB(i) { lbIndex = i; document.getElementById('lbImg').src = loaded[i]; document.getElementById('lightbox').classList.add('active'); }
+    function closeLB() { document.getElementById('lightbox').classList.remove('active'); }
+    function changePhoto(dir) { lbIndex = (lbIndex + dir + loaded.length) % loaded.length; document.getElementById('lbImg').src = loaded[lbIndex]; }
+    document.getElementById('lightbox').addEventListener('click', function(e) { if (e.target === this) closeLB(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLB(); if (e.key === 'ArrowRight') changePhoto(1); if (e.key === 'ArrowLeft') changePhoto(-1); });
+
+    // COUNTDOWN
+    function updateCountdown() {
+      const target = new Date('2026-07-18T19:00:00');
+      const now = new Date();
+      const diff = target - now;
+      if (diff <= 0) { document.querySelector('.countdown-wrap').innerHTML = '<p class="countdown-title">🎾 Tournament Day is HERE! Go Emma!</p>'; return; }
+      const d = Math.floor(diff / 86400000);
+      const h = Math.floor((diff % 86400000) / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+      document.getElementById('cd-days').textContent  = d;
+      document.getElementById('cd-hours').textContent = h;
+      document.getElementById('cd-mins').textContent  = m;
+      document.getElementById('cd-secs').textContent  = s;
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // SCOUTING BAR ANIMATION
+    const observer = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) {
-          e.target.style.opacity = '1';
-          e.target.style.transform = 'translateY(0)';
+          e.target.querySelectorAll('.scout-bar-fill').forEach(bar => {
+            bar.style.width = bar.dataset.width;
+          });
         }
       });
-    }, { threshold: 0.08 });
-    document.querySelectorAll('.section, .fun-bg, .stat-strip').forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(20px)';
+    }, { threshold: 0.3 });
+    document.querySelectorAll('.scout-wrap').forEach(el => observer.observe(el));
+
+    // SCROLL FADE IN
+    const fadeObs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; } });
+    }, { threshold: 0.07 });
+    document.querySelectorAll('.section, .highlight-section, .stat-strip').forEach(el => {
+      el.style.opacity = '0'; el.style.transform = 'translateY(20px)';
       el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
-      obs.observe(el);
+      fadeObs.observe(el);
     });
+
+    // SMOOTH SCROLL
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => { e.preventDefault(); const t = document.querySelector(a.getAttribute('href')); if (t) t.scrollIntoView({ behavior: 'smooth' }); });
+    });
+
+    // SHARE
+    function copyShareLink() {
+      navigator.clipboard.writeText('https://cyberbykayvon.github.io/EmmaHoskins').then(() => {
+        document.getElementById('copiedMsg').style.display = 'block';
+        setTimeout(() => document.getElementById('copiedMsg').style.display = 'none', 3000);
+      });
+    }
   </script>
 </body>
 </html>
