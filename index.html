@@ -489,13 +489,12 @@
     const total = 20;
     const grid = document.getElementById('galleryGrid');
     const loaded = [];
+    const photoOrder = [1,2,3,4,5,6,7,8,11,9,10,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30];
 
     function tryLoad(num) {
       return new Promise(resolve => {
         const name = 'photo' + num;
-        // try common extensions
         const exts = ['jpg','JPG','jpeg','JPEG','PNG','png'];
-        let tried = 0;
         function next(i) {
           if (i >= exts.length) { resolve(null); return; }
           const img = new Image();
@@ -509,22 +508,24 @@
     }
 
     async function buildGallery() {
-      for (let i = 1; i <= 30; i++) {
+      for (let n = 0; n < photoOrder.length; n++) {
+        const i = photoOrder[n];
         const src = await tryLoad(i);
         if (!src) continue;
+        const idx = loaded.length;
         loaded.push(src);
         const item = document.createElement('div');
         item.className = 'g-item';
-        // photo2 and photo9 are coach photos — span 2 cols
-        
-        item.innerHTML = `<img src="${src}" alt="Emma photo ${i}" loading="lazy" />`;
+        item.innerHTML = `<img src="${src}" alt="Emma photo ${i}" loading="lazy" style="object-position: center 20%;" />`;
         if (i === 2 || i === 9) {
           const lbl = document.createElement('div');
           lbl.className = 'g-label';
-          lbl.textContent = '📸 Coach Kayvon';
+          lbl.textContent = '\u{1F4F8} Coach Kayvon';
           item.appendChild(lbl);
         }
-        item.addEventListener('click', () => openLB(loaded.length - 1));
+        item.addEventListener('click', (function(capturedIdx) {
+          return function() { openLB(capturedIdx); };
+        })(idx));
         grid.appendChild(item);
       }
     }
