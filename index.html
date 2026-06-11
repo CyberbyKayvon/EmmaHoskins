@@ -4,8 +4,302 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Emma Hoskins | Junior Tennis</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: #fdf0fa;
+      color: #2d1a2e;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(10px);
+      padding: 0.9rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 16px rgba(200,100,200,0.1);
+    }
+    .nav-logo {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.2rem;
+      color: #c040b0;
+    }
+    .nav-links { display: flex; gap: 0.8rem; }
+    .nav-links a {
+      font-family: 'Fredoka One', cursive;
+      font-size: 0.88rem;
+      color: #c040b0;
+      text-decoration: none;
+      background: #ffe0f5;
+      padding: 5px 16px;
+      border-radius: 999px;
+      transition: background 0.15s;
+    }
+    .nav-links a:hover { background: #ffb8e8; }
+
+    /* HERO — full viewport, photo fills background */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('images/IMG_8515.jpg');
+      background-size: cover;
+      background-position: center top;
+      filter: brightness(0.82);
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(180,60,180,0.08) 0%,
+        rgba(80,0,80,0.0) 40%,
+        rgba(40,0,60,0.72) 100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 2.5rem 2rem 3.5rem;
+      width: 100%;
+      max-width: 700px;
+    }
+    .hero-name {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      color: white;
+      line-height: 1;
+      text-shadow: 0 4px 24px rgba(0,0,0,0.4);
+      margin-bottom: 0.4rem;
+    }
+    .hero-sub {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.88);
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+      letter-spacing: 0.02em;
+    }
+    .hero-badges {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 1.2rem;
+    }
+    .hero-badge {
+      font-family: 'Fredoka One', cursive;
+      font-size: 0.9rem;
+      padding: 6px 18px;
+      border-radius: 999px;
+      letter-spacing: 0.02em;
+    }
+    .badge-yellow { background: #ffe066; color: #7a4f00; }
+    .badge-pink   { background: rgba(255,133,200,0.9); color: white; }
+    .badge-purple { background: rgba(180,100,255,0.9); color: white; }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* STAT STRIP */
+    .stat-strip {
+      background: linear-gradient(135deg, #c97aff, #ff85c8);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      text-align: center;
+    }
+    .strip-item {
+      padding: 1.4rem 0.5rem;
+      border-right: 1px solid rgba(255,255,255,0.2);
+    }
+    .strip-item:last-child { border-right: none; }
+    .strip-num {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2rem;
+      color: white;
+      line-height: 1;
+    }
+    .strip-label {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.85);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 3px;
+    }
+
+    /* SECTIONS */
+    .section {
+      padding: 3rem 2rem;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+    .section-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.8rem;
+      color: #c040b0;
+      margin-bottom: 1.4rem;
+      text-align: center;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .about-card {
+      background: white;
+      border-radius: 20px;
+      padding: 1.3rem 1.2rem;
+      border: 2px solid #f9c6ef;
+      box-shadow: 0 4px 18px rgba(200,100,200,0.1);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .about-icon { font-size: 1.6rem; flex-shrink: 0; }
+    .about-text { font-size: 0.92rem; font-weight: 600; color: #3d1a4a; line-height: 1.45; }
+
+    /* GALLERY */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto;
+      gap: 12px;
+    }
+    .gallery-grid .big {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+    .gallery-img {
+      width: 100%;
+      height: 100%;
+      min-height: 200px;
+      object-fit: cover;
+      border-radius: 18px;
+      border: 3px solid #f9c6ef;
+      box-shadow: 0 4px 14px rgba(200,100,200,0.14);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: block;
+    }
+    .gallery-img:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 24px rgba(200,100,200,0.25);
+    }
+
+    /* RESULTS */
+    .results-list { display: flex; flex-direction: column; gap: 12px; }
+    .result-card {
+      background: white;
+      border-radius: 16px;
+      padding: 1rem 1.3rem;
+      border-left: 5px solid #ccc;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+    .result-card.win  { border-left-color: #4caf50; }
+    .result-card.loss { border-left-color: #e91e8c; }
+    .result-meta {
+      font-size: 0.76rem; color: #9a6ea0;
+      font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.04em; margin-bottom: 6px;
+    }
+    .result-matchup {
+      display: flex; align-items: center;
+      gap: 12px; flex-wrap: wrap; margin-bottom: 6px;
+    }
+    .player-name {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.05rem; color: #c040b0;
+    }
+    .score {
+      font-weight: 700; font-size: 0.95rem; color: #3d1a4a;
+      background: #f0e0ff; padding: 2px 10px; border-radius: 999px;
+    }
+    .opponent { font-size: 0.88rem; color: #777; font-weight: 600; }
+    .win-badge  { font-size: 0.75rem; font-weight: 800; color: #2e7d32; }
+    .loss-badge { font-size: 0.75rem; font-weight: 800; color: #ad1457; }
+
+    /* UPCOMING */
+    .fun-bg {
+      background: linear-gradient(120deg, #f0e0ff 0%, #ffe0f5 100%);
+      padding: 3rem 2rem;
+    }
+    .event-card {
+      background: white;
+      border-radius: 20px;
+      padding: 1.6rem 1.8rem;
+      box-shadow: 0 4px 18px rgba(200,100,200,0.12);
+      border: 2px solid #f9c6ef;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .event-date {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1rem; color: #c040b0; margin-bottom: 4px;
+    }
+    .event-name {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.4rem; color: #3d1a4a; margin-bottom: 8px;
+    }
+    .event-location { font-size: 0.88rem; font-weight: 700; color: #7a4090; margin-bottom: 4px; }
+    .event-detail   { font-size: 0.82rem; color: #9a6ea0; font-weight: 600; }
+
+    /* FOOTER */
+    footer {
+      background: linear-gradient(135deg, #c97aff, #ff85c8);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      color: white;
+    }
+    .footer-name {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.6rem; margin-bottom: 0.4rem;
+    }
+    footer p { font-size: 0.9rem; font-weight: 600; opacity: 0.9; margin: 0.2rem 0; }
+    .footer-small { font-size: 0.76rem !important; opacity: 0.7 !important; margin-top: 10px !important; }
+
+    /* MOBILE */
+    @media (max-width: 640px) {
+      .stat-strip { grid-template-columns: repeat(2, 1fr); }
+      .strip-item:nth-child(2) { border-right: none; }
+      .about-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid .big { grid-column: span 2; grid-row: span 1; }
+      .nav-links a { padding: 4px 10px; font-size: 0.8rem; }
+    }
+  </style>
 </head>
 <body>
 
@@ -14,100 +308,77 @@
     <span class="nav-logo">🎾 Emma Hoskins</span>
     <div class="nav-links">
       <a href="#about">About</a>
-      <a href="#stats">Stats</a>
       <a href="#gallery">Gallery</a>
       <a href="#results">Results</a>
+      <a href="#next">Up Next</a>
     </div>
   </nav>
 
-  <!-- HERO -->
+  <!-- HERO — full screen photo splash -->
   <section class="hero">
-    <div class="bubble b1"></div>
-    <div class="bubble b2"></div>
-    <div class="bubble b3"></div>
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
     <div class="hero-content">
-      <img src="images/hero.jpg" alt="Emma Hoskins" class="hero-photo" onerror="this.style.display='none'" />
-      <h1>Emma Hoskins</h1>
-      <p class="subtitle">El Dorado Hills, CA · Broadstone Sports Club</p>
-      <p class="subtitle">Rising 6th Grader · Class of 2033</p>
-      <div class="badge">⭐ 41-17 Overall Record ⭐</div>
+      <h1 class="hero-name">Emma Hoskins</h1>
+      <p class="hero-sub">El Dorado Hills, CA &nbsp;·&nbsp; Broadstone Sports Club</p>
+      <p class="hero-sub">Rising 6th Grader &nbsp;·&nbsp; Class of 2033</p>
+      <div class="hero-badges">
+        <span class="hero-badge badge-yellow">⭐ 41–17 Overall Record</span>
+        <span class="hero-badge badge-pink">Girls 12 & Under</span>
+        <span class="hero-badge badge-purple">UTR 5.xx Singles</span>
+      </div>
     </div>
+    <div class="scroll-hint">↓ &nbsp; scroll</div>
   </section>
 
-  <!-- STATS -->
-  <section class="section" id="stats">
-    <h2 class="section-title">By the Numbers 📊</h2>
-    <div class="cards-grid">
-      <div class="stat-card">
-        <span class="stat-emoji">🏆</span>
-        <div class="stat-number">41</div>
-        <div class="stat-label">Career Wins</div>
-      </div>
-      <div class="stat-card">
-        <span class="stat-emoji">⚡</span>
-        <div class="stat-number">5.xx</div>
-        <div class="stat-label">UTR Singles</div>
-      </div>
-      <div class="stat-card">
-        <span class="stat-emoji">🤝</span>
-        <div class="stat-number">4.xx</div>
-        <div class="stat-label">UTR Doubles</div>
-      </div>
-      <div class="stat-card">
-        <span class="stat-emoji">📍</span>
-        <div class="stat-number">#46</div>
-        <div class="stat-label">CA Recruiting List</div>
-      </div>
+  <!-- STAT STRIP -->
+  <div class="stat-strip">
+    <div class="strip-item">
+      <div class="strip-num">41</div>
+      <div class="strip-label">Career Wins</div>
     </div>
-  </section>
+    <div class="strip-item">
+      <div class="strip-num">5.xx</div>
+      <div class="strip-label">UTR Singles</div>
+    </div>
+    <div class="strip-item">
+      <div class="strip-num">4.xx</div>
+      <div class="strip-label">UTR Doubles</div>
+    </div>
+    <div class="strip-item">
+      <div class="strip-num">#46</div>
+      <div class="strip-label">CA Recruiting List</div>
+    </div>
+  </div>
 
   <!-- ABOUT -->
-  <section class="section fun-section" id="about">
+  <section class="section" id="about">
     <h2 class="section-title">What Makes Emma Dangerous 🔥</h2>
-    <ul class="strength-list">
-      <li><span class="icon">🎯</span> Competes in Girls 12 & Under — holding a UTR 5.xx singles rating</li>
-      <li><span class="icon">🧠</span> Smart, disciplined point construction beyond her years</li>
-      <li><span class="icon">💜</span> Trains at Broadstone Sports Club, Folsom CA</li>
-      <li><span class="icon">🌱</span> Class of 2033 — the future is very bright</li>
-      <li><span class="icon">🏅</span> Competing in "Little Mo" West Regionals — Berkeley, CA (July 2026)</li>
-    </ul>
-  </section>
-
-  <!-- RECENT RESULTS -->
-  <section class="section" id="results">
-    <h2 class="section-title">Recent Results 📋</h2>
-    <div class="results-list">
-
-      <div class="result-card win">
-        <div class="result-meta">Jun 6, 2026 · Singles · Round of 32</div>
-        <div class="result-matchup">
-          <span class="player-name">E. Hoskins</span>
-          <span class="score">6–2, 6–3</span>
-          <span class="opponent">A. Hu (207)</span>
-        </div>
-        <div class="result-badge win-badge">WIN ✅</div>
+    <div class="about-grid">
+      <div class="about-card">
+        <span class="about-icon">🎯</span>
+        <span class="about-text">UTR 5.xx singles rating competing Girls 12 & Under — elite for her age</span>
       </div>
-
-      <div class="result-card loss">
-        <div class="result-meta">Jun 6, 2026 · Singles · Round of 16</div>
-        <div class="result-matchup">
-          <span class="player-name">E. Hoskins</span>
-          <span class="score">6–1, 6–1</span>
-          <span class="opponent">A. Liu (111)</span>
-        </div>
-        <div class="result-badge loss-badge">LOSS</div>
+      <div class="about-card">
+        <span class="about-icon">🧠</span>
+        <span class="about-text">Smart, disciplined point construction way beyond her years</span>
       </div>
-
-      <div class="result-card loss">
-        <div class="result-meta">Jun 6, 2026 · Doubles · Round of 16</div>
-        <div class="result-matchup">
-          <span class="player-name">Hoskins / Kataria</span>
-          <span class="score">2–4, 1–0</span>
-          <span class="opponent">Prasad / Agrawal</span>
-        </div>
-        <div class="result-badge loss-badge">LOSS</div>
+      <div class="about-card">
+        <span class="about-icon">💜</span>
+        <span class="about-text">Trains at Broadstone Sports Club, Folsom CA — putting in the work daily</span>
       </div>
-
+      <div class="about-card">
+        <span class="about-icon">🌱</span>
+        <span class="about-text">Class of 2033 — the recruiting world hasn't seen anything yet</span>
+      </div>
+      <div class="about-card">
+        <span class="about-icon">🏅</span>
+        <span class="about-text">"Little Mo" West Regionals — Berkeley, CA — July 2026</span>
+      </div>
+      <div class="about-card">
+        <span class="about-icon">⚡</span>
+        <span class="about-text">Competes hard every single point — the fight is always there</span>
+      </div>
     </div>
   </section>
 
@@ -115,26 +386,66 @@
   <section class="section" id="gallery">
     <h2 class="section-title">On the Court 📸</h2>
     <div class="gallery-grid">
-      <!-- Drop your photos in the images/ folder and add them like this: -->
-      <img src="images/photo1.jpg" alt="Emma on court" onerror="this.closest('.gallery-item').style.display='none'" class="gallery-img" />
-      <img src="images/photo2.jpg" alt="Emma serving" onerror="this.closest('.gallery-item').style.display='none'" class="gallery-img" />
-      <img src="images/photo3.jpg" alt="Emma competing" onerror="this.closest('.gallery-item').style.display='none'" class="gallery-img" />
-      <img src="images/photo4.jpg" alt="Emma training" onerror="this.closest('.gallery-item').style.display='none'" class="gallery-img" />
-      <img src="images/photo5.jpg" alt="Emma with trophy" onerror="this.closest('.gallery-item').style.display='none'" class="gallery-img" />
-      <img src="images/photo6.jpg" alt="Emma at tournament" onerror="this.closest('.gallery-item').style.display='none'" class="gallery-img" />
+      <img src="images/IMG_8515.jpg"  alt="Emma Hoskins tennis" class="gallery-img big" />
+      <img src="images/IMG_0027.jpg"  alt="Emma on court" class="gallery-img" />
+      <img src="images/IMG_3278.jpg"  alt="Emma serving" class="gallery-img" />
+      <img src="images/IMG_3929.jpg"  alt="Emma competing" class="gallery-img" />
+      <img src="images/IMG_6283.jpg"  alt="Emma training" class="gallery-img" />
+      <img src="images/IMG_6847.JPEG" alt="Emma at tournament" class="gallery-img" />
+      <img src="images/IMG_6848.JPG"  alt="Emma with trophy" class="gallery-img" />
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section class="section" id="results">
+    <h2 class="section-title">Recent Results 📋</h2>
+    <div class="results-list">
+
+      <div class="result-card win">
+        <div class="result-meta">Jun 6, 2026 · L3 MTA Manteca · Singles · Round of 32</div>
+        <div class="result-matchup">
+          <span class="player-name">E. Hoskins</span>
+          <span class="score">6–2, 6–3</span>
+          <span class="opponent">def. A. Hu (ranked 207)</span>
+        </div>
+        <div class="win-badge">WIN ✅</div>
+      </div>
+
+      <div class="result-card loss">
+        <div class="result-meta">Jun 6, 2026 · L3 MTA Manteca · Singles · Round of 16</div>
+        <div class="result-matchup">
+          <span class="player-name">E. Hoskins</span>
+          <span class="score">1–6, 1–6</span>
+          <span class="opponent">lost to A. Liu (ranked 111)</span>
+        </div>
+        <div class="loss-badge">LOSS</div>
+      </div>
+
+      <div class="result-card loss">
+        <div class="result-meta">Jun 6, 2026 · L3 MTA Manteca · Doubles · Round of 16</div>
+        <div class="result-matchup">
+          <span class="player-name">Hoskins / Kataria</span>
+          <span class="score">2–4, 1–0</span>
+          <span class="opponent">lost to Prasad / Agrawal</span>
+        </div>
+        <div class="loss-badge">LOSS</div>
+      </div>
+
     </div>
   </section>
 
   <!-- UPCOMING -->
-  <section class="section fun-section">
-    <h2 class="section-title">Up Next 📅</h2>
-    <div class="event-card">
-      <div class="event-date">Jul 18, 2026</div>
-      <div class="event-name">"Little Mo" West Regionals</div>
-      <div class="event-location">📍 Berkeley, CA · Maureen Connolly Brinker Foundation</div>
-      <div class="event-detail">Singles · Co-ed · UTR 1.0–16.0</div>
+  <div class="fun-bg" id="next">
+    <div style="max-width:920px;margin:0 auto;">
+      <h2 class="section-title">Up Next 📅</h2>
+      <div class="event-card">
+        <div class="event-date">Jul 18, 2026 · 7:00pm</div>
+        <div class="event-name">"Little Mo" West Regionals</div>
+        <div class="event-location">📍 Berkeley, CA · Maureen Connolly Brinker Foundation</div>
+        <div class="event-detail">Singles · Co-ed · UTR 1.0–16.0 · 264 Players</div>
+      </div>
     </div>
-  </section>
+  </div>
 
   <!-- FOOTER -->
   <footer>
@@ -143,6 +454,28 @@
     <p class="footer-small">UTR Profile · Tennis Recruiting Network · Class of 2033</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const t = document.querySelector(link.getAttribute('href'));
+        if (t) t.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.section, .fun-bg, .stat-strip').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
+      obs.observe(el);
+    });
+  </script>
 </body>
 </html>
