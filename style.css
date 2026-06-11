@@ -1,0 +1,370 @@
+/* ===========================
+   EMMA HOSKINS TENNIS SITE
+   =========================== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: #fff0f8;
+  color: #2d1a2e;
+}
+
+/* NAV */
+nav {
+  background: white;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 12px rgba(200, 100, 200, 0.12);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-logo {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.2rem;
+  color: #c040b0;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  font-family: 'Fredoka One', cursive;
+  font-size: 0.95rem;
+  color: #c040b0;
+  text-decoration: none;
+  background: #ffe0f5;
+  padding: 6px 18px;
+  border-radius: 999px;
+  transition: background 0.15s;
+}
+
+.nav-links a:hover {
+  background: #ffb8e8;
+}
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, #ff85c8 0%, #c97aff 50%, #85b0ff 100%);
+  padding: 4rem 2rem 3rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.18;
+  background: white;
+}
+.b1 { width: 160px; height: 160px; top: -40px; left: -30px; }
+.b2 { width: 100px; height: 100px; top: 30px; right: 40px; }
+.b3 { width: 250px; height: 250px; bottom: -100px; right: -80px; }
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-photo {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid rgba(255, 255, 255, 0.7);
+  margin-bottom: 1.2rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero h1 {
+  font-family: 'Fredoka One', cursive;
+  font-size: 3.5rem;
+  color: white;
+  text-shadow: 0 3px 12px rgba(180, 80, 180, 0.35);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.92);
+  font-weight: 600;
+  margin-top: 0.3rem;
+}
+
+.badge {
+  display: inline-block;
+  background: #ffe066;
+  color: #7a4f00;
+  font-family: 'Fredoka One', cursive;
+  font-size: 1rem;
+  padding: 6px 20px;
+  border-radius: 999px;
+  margin-top: 1.2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* SECTIONS */
+.section {
+  padding: 2.5rem 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.8rem;
+  color: #c040b0;
+  margin-bottom: 1.4rem;
+  text-align: center;
+}
+
+/* STAT CARDS */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 14px;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 20px;
+  padding: 1.4rem 1rem;
+  text-align: center;
+  box-shadow: 0 4px 18px rgba(200, 100, 200, 0.12);
+  border: 2px solid #f9c6ef;
+}
+
+.stat-emoji {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.stat-number {
+  font-family: 'Fredoka One', cursive;
+  font-size: 2rem;
+  color: #c040b0;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: #9a6ea0;
+  font-weight: 700;
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* FUN SECTION */
+.fun-section {
+  background: linear-gradient(120deg, #f0e0ff 0%, #ffe0f5 100%);
+  border-radius: 24px;
+  margin: 0 1rem 2rem;
+  padding: 2rem;
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.strength-list {
+  list-style: none;
+  padding: 0;
+}
+
+.strength-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 16px;
+  background: white;
+  border-radius: 14px;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #3d1a4a;
+  box-shadow: 0 2px 8px rgba(200, 100, 200, 0.09);
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.strength-list li .icon {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+/* RESULTS */
+.results-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.result-card {
+  background: white;
+  border-radius: 16px;
+  padding: 1rem 1.2rem;
+  border-left: 5px solid #ccc;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.result-card.win  { border-left-color: #4caf50; }
+.result-card.loss { border-left-color: #e91e8c; }
+
+.result-meta {
+  font-size: 0.78rem;
+  color: #9a6ea0;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.result-matchup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.player-name {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.05rem;
+  color: #c040b0;
+}
+
+.score {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #3d1a4a;
+  background: #f0e0ff;
+  padding: 2px 10px;
+  border-radius: 999px;
+}
+
+.opponent {
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 600;
+}
+
+.result-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  align-self: flex-start;
+}
+
+.win-badge  { color: #2e7d32; }
+.loss-badge { color: #ad1457; }
+
+/* GALLERY */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+.gallery-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 18px;
+  border: 3px solid #f9c6ef;
+  box-shadow: 0 4px 14px rgba(200, 100, 200, 0.14);
+  transition: transform 0.2s;
+}
+
+.gallery-img:hover {
+  transform: scale(1.03);
+}
+
+/* UPCOMING EVENT */
+.event-card {
+  background: white;
+  border-radius: 20px;
+  padding: 1.4rem 1.6rem;
+  box-shadow: 0 4px 18px rgba(200, 100, 200, 0.12);
+  border: 2px solid #f9c6ef;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.event-date {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.1rem;
+  color: #c040b0;
+  margin-bottom: 4px;
+}
+
+.event-name {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.4rem;
+  color: #3d1a4a;
+  margin-bottom: 6px;
+}
+
+.event-location {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #7a4090;
+  margin-bottom: 4px;
+}
+
+.event-detail {
+  font-size: 0.82rem;
+  color: #9a6ea0;
+  font-weight: 600;
+}
+
+/* FOOTER */
+footer {
+  background: linear-gradient(135deg, #c97aff, #ff85c8);
+  padding: 2rem;
+  text-align: center;
+  color: white;
+  margin-top: 2rem;
+}
+
+footer p {
+  margin: 0.3rem 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  opacity: 0.92;
+}
+
+.footer-name {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.5rem !important;
+  opacity: 1 !important;
+}
+
+.footer-small {
+  font-size: 0.78rem !important;
+  opacity: 0.75 !important;
+  margin-top: 8px !important;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .hero h1 { font-size: 2.4rem; }
+  .nav-links { gap: 0.7rem; }
+  .nav-links a { padding: 5px 12px; font-size: 0.82rem; }
+  .section { padding: 2rem 1rem; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; }
+}
