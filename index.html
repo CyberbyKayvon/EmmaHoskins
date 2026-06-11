@@ -35,7 +35,7 @@
     }
     .hero-bg {
       position: absolute; inset: 0;
-      background-image: url('images/photo11.JPG');
+      background-image: url('images/IMG_8515.jpg');
       background-size: cover; background-position: center top;
       filter: brightness(0.8);
     }
@@ -148,14 +148,14 @@
     }
     .g-item { overflow: hidden; border-radius: 18px; cursor: pointer; position: relative; }
     .g-item img {
-      width: 100%; height: 220px; object-fit: cover; display: block;
+      width: 100%; height: 240px; object-fit: cover; display: block;
       border: 3px solid #f9c6ef;
       border-radius: 18px;
       transition: transform 0.25s, box-shadow 0.25s;
       box-shadow: 0 4px 14px rgba(200,100,200,0.14);
     }
     .g-item:hover img { transform: scale(1.04); box-shadow: 0 8px 24px rgba(200,100,200,0.28); }
-    .g-item.featured img { height: 460px; }
+    .g-item.featured img { height: 240px; }
     .g-label {
       position: absolute; bottom: 10px; left: 10px;
       background: rgba(192,64,176,0.85); color: white;
@@ -385,7 +385,7 @@
       <div class="share-card" id="shareCard">
         <div class="share-card-bubble" style="width:140px;height:140px;top:-50px;left:-40px;"></div>
         <div class="share-card-bubble" style="width:90px;height:90px;bottom:-20px;right:-20px;"></div>
-        <h2>🎾 Rising Star</h2>
+        <h2>🌟 Future is Bright</h2>
         <div class="share-name">Emma Hoskins</div>
         <div class="share-record">41–17</div>
         <div class="share-label">Overall Career Record</div>
@@ -406,7 +406,7 @@
 
   <!-- GALLERY -->
   <section class="section" id="gallery">
-    <h2 class="section-title">On the Court 📸</h2>
+    <h2 class="section-title">On & Off the Court 📸</h2>
     <div class="gallery-grid" id="galleryGrid"></div>
   </section>
 
@@ -516,7 +516,7 @@
         const item = document.createElement('div');
         item.className = 'g-item';
         // photo2 and photo9 are coach photos — span 2 cols
-        if (i === 2 || i === 9) item.classList.add('featured');
+        
         item.innerHTML = `<img src="${src}" alt="Emma photo ${i}" loading="lazy" />`;
         if (i === 2 || i === 9) {
           const lbl = document.createElement('div');
