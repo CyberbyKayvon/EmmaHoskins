@@ -217,6 +217,17 @@
     .opponent { font-size: 0.86rem; color: #777; font-weight: 600; }
     .win-badge  { font-size: 0.74rem; font-weight: 800; color: #2e7d32; }
     .loss-badge { font-size: 0.74rem; font-weight: 800; color: #ad1457; }
+    .result-card.placement { border-left-color: #ffb300; background: linear-gradient(120deg,#fff8e1,#fff0f8); }
+    .placement-headline { font-family: 'Fredoka One', cursive; font-size: 1.3rem; color: #c040b0; margin: 4px 0 4px; }
+    .placement-detail { font-size: 0.9rem; color: #5a3a5e; font-weight: 600; line-height: 1.45; }
+    .utr-btn {
+      display: inline-block; text-decoration: none;
+      background: linear-gradient(135deg, #1a0a2e, #2d0a3e); color: #ffe066;
+      font-family: 'Fredoka One', cursive; font-size: 1rem;
+      padding: 12px 26px; border-radius: 999px; box-shadow: 0 4px 16px rgba(40,10,60,0.3);
+      transition: transform 0.15s;
+    }
+    .utr-btn:hover { transform: scale(1.04); }
 
     /* COUNTDOWN */
     .countdown-wrap { text-align: center; margin-top: 1.4rem; }
@@ -533,6 +544,11 @@
   <!-- RESULTS -->
   <section class="section" id="results">
     <h2 class="section-title">Recent Results 📋</h2>
+    <div class="result-card placement">
+      <div class="result-meta">Jun 6–15, 2026 · L3 USTA · MTA Manteca Junior 12s Sectional Championships</div>
+      <div class="placement-headline">🏅 5th Place — Girls 12s Singles</div>
+      <div class="placement-detail">Reached the main-draw quarterfinals, then ran the backdraw and won it to finish 5th overall.</div>
+    </div>
     <div class="results-list">
       <div class="result-card win">
         <div class="result-meta">Jun 6, 2026 · L3 MTA Manteca · Singles · Round of 32</div>
@@ -544,15 +560,6 @@
         <div class="win-badge">WIN ✅</div>
       </div>
       <div class="result-card loss">
-        <div class="result-meta">Jun 6, 2026 · L3 MTA Manteca · Singles · Round of 16</div>
-        <div class="result-matchup">
-          <span class="player-name">E. Hoskins</span>
-          <span class="score">1–6, 1–6</span>
-          <span class="opponent">lost to A. Liu (ranked 111)</span>
-        </div>
-        <div class="loss-badge">LOSS</div>
-      </div>
-      <div class="result-card loss">
         <div class="result-meta">Jun 6, 2026 · L3 MTA Manteca · Doubles · Round of 16</div>
         <div class="result-matchup">
           <span class="player-name">Hoskins / Kataria</span>
@@ -561,6 +568,9 @@
         </div>
         <div class="loss-badge">LOSS</div>
       </div>
+    </div>
+    <div style="text-align:center;margin-top:1.4rem;">
+      <a class="utr-btn" href="https://app.utrsports.net/profiles/4138333" target="_blank" rel="noopener">📊 View Live UTR Profile →</a>
     </div>
   </section>
 
@@ -625,6 +635,7 @@
     <p class="footer-name">Keep swinging, Emma! 🎾💜</p>
     <p>El Dorado Hills, CA · Broadstone Sports Club</p>
     <div class="footer-socials">
+      <a href="https://app.utrsports.net/profiles/4138333" target="_blank" rel="noopener">📊 Live UTR</a>
       <a href="https://www.instagram.com/emmahoskinstennis/" target="_blank" rel="noopener">📸 @emmahoskinstennis</a>
       <a href="mailto:emmahoskinstennis@gmail.com">✉️ Email</a>
     </div>
