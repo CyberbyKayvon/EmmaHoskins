@@ -677,8 +677,10 @@
         loaded.push(src);
         const item = document.createElement('div');
         item.className = 'g-item';
-        item.innerHTML = `<img src="${src}" alt="Emma photo ${i}" loading="lazy" style="object-position: center 20%;" />`;
-        if (i === 2 || i === 9) {
+        const topShift = [1,6,9,11,13];
+        const objPos = topShift.indexOf(i) >= 0 ? 'center 0%' : 'center 20%';
+        item.innerHTML = `<img src="${src}" alt="Emma photo ${i}" loading="lazy" style="object-position: ${objPos};" />`;
+        if (i === 9) {
           const lbl = document.createElement('div');
           lbl.className = 'g-label';
           lbl.textContent = '\u{1F4F8} Coach Kayvon';
