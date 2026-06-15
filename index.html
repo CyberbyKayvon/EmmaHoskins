@@ -4,6 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Emma Hoskins | Junior Tennis</title>
+  <meta name="description" content="Emma Hoskins — Girls 12 & Under junior tennis. #46 National, UTR 5.xx, Class of 2033. 41–17 career record out of El Dorado Hills, CA." />
+
+  <!-- Social share preview (Open Graph) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://cyberbykayvon.github.io/EmmaHoskins/" />
+  <meta property="og:title" content="Emma Hoskins | Junior Tennis · Class of 2033" />
+  <meta property="og:description" content="Girls 12 & Under · #46 National · UTR 5.xx · 41–17 career record. El Dorado Hills, CA · Broadstone Sports Club." />
+  <meta property="og:image" content="https://cyberbykayvon.github.io/EmmaHoskins/images/photo12.jpg" />
+  <meta property="og:image:alt" content="Emma Hoskins on the tennis court" />
+  <meta property="og:site_name" content="Emma Hoskins | Junior Tennis" />
+
+  <!-- Twitter / X card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Emma Hoskins | Junior Tennis · Class of 2033" />
+  <meta name="twitter:description" content="Girls 12 & Under · #46 National · UTR 5.xx · 41–17 career record. El Dorado Hills, CA." />
+  <meta name="twitter:image" content="https://cyberbykayvon.github.io/EmmaHoskins/images/photo12.jpg" />
+
   <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -235,6 +252,42 @@
     footer p { font-size: 0.88rem; font-weight: 600; opacity: 0.9; margin: 0.2rem 0; }
     .footer-small { font-size: 0.76rem !important; opacity: 0.7 !important; margin-top: 10px !important; }
 
+    /* SCROLL PROGRESS BAR */
+    .scroll-progress {
+      position: fixed; top: 0; left: 0; height: 4px; width: 0%;
+      background: linear-gradient(90deg, #c97aff, #ff85c8, #ffe066);
+      z-index: 300; transition: width 0.1s linear;
+    }
+
+    /* BACK TO TOP */
+    .back-top {
+      position: fixed; bottom: 1.4rem; right: 1.4rem; z-index: 250;
+      width: 50px; height: 50px; border-radius: 50%; border: none; cursor: pointer;
+      background: linear-gradient(135deg, #c97aff, #ff85c8); color: white;
+      font-size: 1.5rem; line-height: 1; box-shadow: 0 4px 16px rgba(192,64,176,0.4);
+      opacity: 0; pointer-events: none; transform: translateY(12px);
+      transition: opacity 0.25s, transform 0.25s;
+    }
+    .back-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .back-top:hover { transform: scale(1.08); }
+
+    /* SEASON SNAPSHOT */
+    .snapshot-wrap {
+      background: linear-gradient(135deg, #1a0a2e, #2d0a3e);
+      border-radius: 24px; padding: 2.2rem 2rem; color: white; text-align: center;
+    }
+    .snap-pct { font-family: 'Fredoka One', cursive; font-size: 3.4rem; color: #ffe066; line-height: 1; }
+    .snap-pct-label { font-size: 0.85rem; color: rgba(255,255,255,0.6); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1.6rem; }
+    .snap-bar { display: flex; height: 44px; border-radius: 999px; overflow: hidden; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1); }
+    .snap-bar-win, .snap-bar-loss {
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Fredoka One', cursive; font-size: 0.95rem; color: white;
+      width: 0%; transition: width 1.3s cubic-bezier(.4,0,.2,1); white-space: nowrap;
+    }
+    .snap-bar-win  { background: linear-gradient(90deg, #4caf50, #6fcf73); }
+    .snap-bar-loss { background: linear-gradient(90deg, #ff85c8, #e91e8c); }
+    .snap-meta { font-size: 0.84rem; color: rgba(255,255,255,0.6); font-weight: 600; margin-top: 1.2rem; }
+
     /* MOBILE */
     @media (max-width: 640px) {
       .stat-strip { grid-template-columns: repeat(2,1fr); }
@@ -248,6 +301,9 @@
   </style>
 </head>
 <body>
+
+  <!-- SCROLL PROGRESS -->
+  <div class="scroll-progress" id="scrollProgress"></div>
 
   <!-- NAV -->
   <nav>
@@ -418,6 +474,20 @@
     <button class="lb-next" onclick="changePhoto(1)">›</button>
   </div>
 
+  <!-- SEASON SNAPSHOT -->
+  <section class="section" id="snapshot">
+    <h2 class="section-title">Season Snapshot 📊</h2>
+    <div class="snapshot-wrap">
+      <div class="snap-pct"><span id="winPct">0</span>%</div>
+      <div class="snap-pct-label">Career Win Rate</div>
+      <div class="snap-bar">
+        <div class="snap-bar-win"  id="snapWin"  data-width="70.7%">41 W</div>
+        <div class="snap-bar-loss" id="snapLoss" data-width="29.3%">17 L</div>
+      </div>
+      <div class="snap-meta">41 wins · 17 losses · 58 career matches · Girls 12 &amp; Under</div>
+    </div>
+  </section>
+
   <!-- RESULTS -->
   <section class="section" id="results">
     <h2 class="section-title">Recent Results 📋</h2>
@@ -474,6 +544,9 @@
     </div>
   </div>
 
+  <!-- BACK TO TOP -->
+  <button class="back-top" id="backTop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
   <!-- FOOTER -->
   <footer>
     <p class="footer-name">Keep swinging, Emma! 🎾💜</p>
@@ -499,98 +572,4 @@
           if (i >= exts.length) { resolve(null); return; }
           const img = new Image();
           const src = 'images/' + name + '.' + exts[i];
-          img.onload  = () => resolve(src);
-          img.onerror = () => next(i + 1);
-          img.src = src;
-        }
-        next(0);
-      });
-    }
-
-    async function buildGallery() {
-      for (let n = 0; n < photoOrder.length; n++) {
-        const i = photoOrder[n];
-        const src = await tryLoad(i);
-        if (!src) continue;
-        const idx = loaded.length;
-        loaded.push(src);
-        const item = document.createElement('div');
-        item.className = 'g-item';
-        item.innerHTML = `<img src="${src}" alt="Emma photo ${i}" loading="lazy" style="object-position: center 20%;" />`;
-        if (i === 2 || i === 9) {
-          const lbl = document.createElement('div');
-          lbl.className = 'g-label';
-          lbl.textContent = '\u{1F4F8} Coach Kayvon';
-          item.appendChild(lbl);
-        }
-        item.addEventListener('click', (function(capturedIdx) {
-          return function() { openLB(capturedIdx); };
-        })(idx));
-        grid.appendChild(item);
-      }
-    }
-    buildGallery();
-
-    // LIGHTBOX
-    let lbIndex = 0;
-    function openLB(i) { lbIndex = i; document.getElementById('lbImg').src = loaded[i]; document.getElementById('lightbox').classList.add('active'); }
-    function closeLB() { document.getElementById('lightbox').classList.remove('active'); }
-    function changePhoto(dir) { lbIndex = (lbIndex + dir + loaded.length) % loaded.length; document.getElementById('lbImg').src = loaded[lbIndex]; }
-    document.getElementById('lightbox').addEventListener('click', function(e) { if (e.target === this) closeLB(); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLB(); if (e.key === 'ArrowRight') changePhoto(1); if (e.key === 'ArrowLeft') changePhoto(-1); });
-
-    // COUNTDOWN
-    function updateCountdown() {
-      const target = new Date('2026-07-18T19:00:00');
-      const now = new Date();
-      const diff = target - now;
-      if (diff <= 0) { document.querySelector('.countdown-wrap').innerHTML = '<p class="countdown-title">🎾 Tournament Day is HERE! Go Emma!</p>'; return; }
-      const d = Math.floor(diff / 86400000);
-      const h = Math.floor((diff % 86400000) / 3600000);
-      const m = Math.floor((diff % 3600000) / 60000);
-      const s = Math.floor((diff % 60000) / 1000);
-      document.getElementById('cd-days').textContent  = d;
-      document.getElementById('cd-hours').textContent = h;
-      document.getElementById('cd-mins').textContent  = m;
-      document.getElementById('cd-secs').textContent  = s;
-    }
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-
-    // SCOUTING BAR ANIMATION
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.querySelectorAll('.scout-bar-fill').forEach(bar => {
-            bar.style.width = bar.dataset.width;
-          });
-        }
-      });
-    }, { threshold: 0.3 });
-    document.querySelectorAll('.scout-wrap').forEach(el => observer.observe(el));
-
-    // SCROLL FADE IN
-    const fadeObs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; } });
-    }, { threshold: 0.07 });
-    document.querySelectorAll('.section, .highlight-section, .stat-strip').forEach(el => {
-      el.style.opacity = '0'; el.style.transform = 'translateY(20px)';
-      el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
-      fadeObs.observe(el);
-    });
-
-    // SMOOTH SCROLL
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => { e.preventDefault(); const t = document.querySelector(a.getAttribute('href')); if (t) t.scrollIntoView({ behavior: 'smooth' }); });
-    });
-
-    // SHARE
-    function copyShareLink() {
-      navigator.clipboard.writeText('https://cyberbykayvon.github.io/EmmaHoskins').then(() => {
-        document.getElementById('copiedMsg').style.display = 'block';
-        setTimeout(() => document.getElementById('copiedMsg').style.display = 'none', 3000);
-      });
-    }
-  </script>
-</body>
-</html>
+          
