@@ -342,13 +342,18 @@
 
     /* MOBILE */
     @media (max-width: 640px) {
+      nav { padding: 0.55rem 0.7rem; }
+      .nav-logo { display: none; }
+      .nav-links { gap: 5px; width: 100%; justify-content: space-between; }
+      .nav-links a { padding: 5px 8px; font-size: 0.7rem; }
+      .section { padding: 2.4rem 1.2rem; }
+      .highlight-section, .contact-section { padding: 2.4rem 1.2rem; }
       .stat-strip { grid-template-columns: repeat(2,1fr); }
       .strip-item:nth-child(2) { border-right: none; }
       .about-grid { grid-template-columns: 1fr; }
       .scout-grid { grid-template-columns: 1fr; }
       .gallery-grid { grid-template-columns: 1fr 1fr; }
       .g-item.featured img { height: 280px; }
-      .nav-links a { padding: 4px 10px; font-size: 0.78rem; }
     }
   </style>
 </head>
@@ -643,59 +648,33 @@
   </footer>
 
   <script>
-    // AUTO GALLERY — tries photo1 through photo30, shows whatever exists
-    // Coach photos (photo2, photo9) get featured slots
-    const coachPhotos = ['photo2.jpg', 'photo9.jpg'];
-    const extensions = ['jpg','JPG','jpeg','JPEG','png','PNG'];
-    const total = 20;
+    // GALLERY — fixed file list, parallel load, one court shot up top then random
     const grid = document.getElementById('galleryGrid');
     const loaded = [];
+    const files = {1:'photo1.jpg',2:'photo2.jpg',3:'photo3.jpg',4:'photo4.jpg',5:'photo5.jpg',6:'photo6.jpg',7:'photo7.jpg',8:'photo8.jpg',9:'photo9.jpg',10:'photo10.JPEG',11:'photo11.JPG',12:'photo12.jpg',13:'photo13.jpg',14:'photo14.jpg',15:'photo15.jpg'};
+    const facePos = {1:'center 40%',2:'center 5%',3:'center 0%',4:'center 5%',5:'center 8%',6:'center 26%',7:'center 0%',8:'center 0%',9:'center 22%',10:'center 35%',11:'center 50%',12:'center 8%',13:'center 35%',14:'center center',15:'center 22%'};
+    const courtShots = [10,11,13,14,15];
     function shuffle(a){ for(let k=a.length-1;k>0;k--){ const j=Math.floor(Math.random()*(k+1)); [a[k],a[j]]=[a[j],a[k]]; } return a; }
-    const actionShots = shuffle([10,11,13,14,15]);              // on-court hitting shots up top
-    const rest = shuffle([1,2,3,4,5,6,7,8,9,12,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]);
-    const photoOrder = [...actionShots, ...rest];
+    const topCourt = courtShots[Math.floor(Math.random()*courtShots.length)];
+    const order = [topCourt, ...shuffle(Object.keys(files).map(Number).filter(n => n !== topCourt))];
 
-    function tryLoad(num) {
-      return new Promise(resolve => {
-        const name = 'photo' + num;
-        const exts = ['jpg','JPG','jpeg','JPEG','PNG','png'];
-        function next(i) {
-          if (i >= exts.length) { resolve(null); return; }
-          const img = new Image();
-          const src = 'images/' + name + '.' + exts[i];
-          img.onload  = () => resolve(src);
-          img.onerror = () => next(i + 1);
-          img.src = src;
-        }
-        next(0);
-      });
-    }
-
-    async function buildGallery() {
-      for (let n = 0; n < photoOrder.length; n++) {
-        const i = photoOrder[n];
-        const src = await tryLoad(i);
-        if (!src) continue;
-        const idx = loaded.length;
-        loaded.push(src);
-        const item = document.createElement('div');
-        item.className = 'g-item';
-        const facePos = {1:'center 40%',2:'center 5%',3:'center 0%',4:'center 5%',5:'center 8%',6:'center 26%',7:'center 0%',8:'center 0%',9:'center 22%',10:'center 35%',11:'center 50%',12:'center 8%',13:'center 35%',14:'center center',15:'center 22%'};
-        const objPos = facePos[i] || 'center 30%';
-        item.innerHTML = `<img src="${src}" alt="Emma photo ${i}" loading="lazy" style="object-position: ${objPos};" />`;
-        if (i === 11) {
-          const lbl = document.createElement('div');
-          lbl.className = 'g-label';
-          lbl.textContent = '\u{1F4F8} Coach Kayvon';
-          item.appendChild(lbl);
-        }
-        item.addEventListener('click', (function(capturedIdx) {
-          return function() { openLB(capturedIdx); };
-        })(idx));
-        grid.appendChild(item);
+    order.forEach(i => {
+      const src = 'images/' + files[i];
+      const idx = loaded.length;
+      loaded.push(src);
+      const item = document.createElement('div');
+      item.className = 'g-item';
+      const pos = facePos[i] || 'center 30%';
+      item.innerHTML = `<img src="${src}" alt="Emma Hoskins tennis photo ${i}" loading="lazy" decoding="async" width="400" height="240" style="object-position: ${pos};" />`;
+      if (i === 11) {
+        const lbl = document.createElement('div');
+        lbl.className = 'g-label';
+        lbl.textContent = '\u{1F4F8} Coach Kayvon';
+        item.appendChild(lbl);
       }
-    }
-    buildGallery();
+      item.addEventListener('click', () => openLB(idx));
+      grid.appendChild(item);
+    });
 
     // LIGHTBOX
     let lbIndex = 0;
