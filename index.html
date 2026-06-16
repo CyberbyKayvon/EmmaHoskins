@@ -650,7 +650,11 @@
     const total = 20;
     const grid = document.getElementById('galleryGrid');
     const loaded = [];
-    const photoOrder = [1,2,3,4,5,6,7,8,11,9,10,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30];
+    const photoOrder = Array.from({length: 30}, (_, k) => k + 1);
+    for (let k = photoOrder.length - 1; k > 0; k--) {
+      const j = Math.floor(Math.random() * (k + 1));
+      [photoOrder[k], photoOrder[j]] = [photoOrder[j], photoOrder[k]];
+    }
 
     function tryLoad(num) {
       return new Promise(resolve => {
