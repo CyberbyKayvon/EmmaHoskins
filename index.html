@@ -650,11 +650,10 @@
     const total = 20;
     const grid = document.getElementById('galleryGrid');
     const loaded = [];
-    const photoOrder = Array.from({length: 30}, (_, k) => k + 1);
-    for (let k = photoOrder.length - 1; k > 0; k--) {
-      const j = Math.floor(Math.random() * (k + 1));
-      [photoOrder[k], photoOrder[j]] = [photoOrder[j], photoOrder[k]];
-    }
+    function shuffle(a){ for(let k=a.length-1;k>0;k--){ const j=Math.floor(Math.random()*(k+1)); [a[k],a[j]]=[a[j],a[k]]; } return a; }
+    const actionShots = shuffle([10,11,13,14,15]);              // on-court hitting shots up top
+    const rest = shuffle([1,2,3,4,5,6,7,8,9,12,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]);
+    const photoOrder = [...actionShots, ...rest];
 
     function tryLoad(num) {
       return new Promise(resolve => {
